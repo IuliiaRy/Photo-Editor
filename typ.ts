@@ -123,6 +123,6 @@ function addFilter(editor: editor, filter: filterType): editor{
   return editor
 }
 
-function importFile(editor: editor, way: string, photo: photoType): editor{
+function importFile(editor: editor, path: string, photo: photoType): editor{
   return editor
 }
