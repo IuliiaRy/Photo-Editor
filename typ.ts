@@ -1,128 +1,83 @@
-type editor = {
-  canvas: canvasType;
-  currentState: currentStateType;
+type EditorType = {
+  canvas: CanvasType;
+  currentState: CurrentStateType;
 }
-type canvasType = {
-  size: sizeType;
-  text: textType;
-  filter: filterType;
-  primitive: primitiveType;
-  photo: photoType;
-  artobject: artObjectType;
+
+type CanvasType = {
+  size: SizeType;
+  photo: ImageData;
 }
-type sizeType = {
+
+type SizeType = {
   width: number;
   height: number;
 }
-type coordinatesType = {
+
+type CoordinatesType = {
   x: number;
   y: number;
 }
-type textType = {
+
+type TextType = {
   value: string;
+  size: SizeType;
   fontSize: number;
-  fontColor: rgbaType;
+  fontColor: RGBAType;
   font: string;
-  topleft: coordinatesType;
+  topleft: CoordinatesType;
 }
-type filterType = {
-  color: string;
+
+type FilterType = "grey" | "red" | "blue" | "green";
+
+type PrimitiveType = {
+  shape: ShapeType;
+  fill: RGBAType | null;
+  border: BorderType | null;
+  size: SizeType;
+  topLeft: CoordinatesType;
 }
-type primitiveType = {
-  shape: 'circle' | 'rectangle' | 'triangle';
-  fill: rgbaType | null;
-  border: borderType |null;
-  size: sizeType;
-  topLeft: coordinatesType;
+
+type ShapeType = 'circle' | 'rectangle' | 'triangle';
+
+type ImageType = {
+  size: SizeType;
+  topleft: CoordinatesType;
+  image: ImageData;
+  src: string;
 }
-type photoType = {
-  size: sizeType;
-  topleft: coordinatesType;
-}
-type artObjectType = {
-  size: sizeType;
-  topleft: coordinatesType;
-}
-type borderType = {
-  color: rgbaType;
+
+type BorderType = {
+  color: RGBAType;
   width: number;
 }
-type rgbaType = {
-  colorRgba: 'red' | 'blue' | 'green';
-}
-type comandHistoryType = {
-  undo: editor[];
-  redo: editor[];
-}
-type currentStateType = {
-  currentFont: string;
-  currentFontSize: number;
-  currentFontColor: rgbaType;
-  currentShape: 'circle' | 'rectangle' | 'triangle';
-  currentFill: rgbaType | null;
-  currentBorder: borderType |null;
-}
-type selectedAreaType = {
-  size: sizeType;
-  topleft: coordinatesType;
+
+type RGBAType = {
+  red: number;
+  green: number;
+  blue: number;
+  a: number;
 }
 
-function createCanvas(editor: editor, topleft: coordinatesType): editor{
-  return editor
+type CurrentStateType = TextType | PrimitiveType | SelectedAreaType | ImageType | null;
+
+type SelectedAreaType = {
+  topleft: CoordinatesType;
+  size: SizeType;
+  selection: ImageData;
 }
 
-function openFile(editor: editor): editor{
-  return editor
-}
-
-function exportFile(editor: editor, canvas: canvasType): editor{
-  return editor
-}
-
-function undo(editor: editor, comandHistory: comandHistoryType): editor{
-  return editor
-}
-
-function redo(editor: editor, comandHistory: comandHistoryType): editor{
-  return editor
-}
-
-function addImage(editor: editor, photo: photoType): editor{
-  return editor
-}
-
-function selectArea(editor: editor, size: sizeType, topleft: coordinatesType ): editor{
-  return editor
-}
-
-function moveArea(editor: editor, selectedArea: selectedAreaType ): editor{
-  return editor
-}
-
-function cropArea(editor: editor, selectedArea: selectedAreaType ): editor{
-  return editor
-}
-
-function deleteArea(editor: editor, selectedArea: selectedAreaType ): editor{
-  return editor
-}
-
-function insertText(editor: editor, text: textType ): editor{
-  return editor
-}
-
-function insertPrimitive(editor: editor, primitive: primitiveType): editor{
-  return editor
-}
-
-function insertArtObject(editor: editor, artObject: artObjectType): editor{
-  return editor
-}
-
-function addFilter(editor: editor, filter: filterType): editor{
-  return editor
-}
-
-function importFile(editor: editor, path: string, photo: photoType): editor{
-  return editor
+export type {
+  EditorType,
+  CanvasType,
+  SizeType,
+  CoordinatesType,
+  TextType,
+  FilterType,
+  PrimitiveType,
+  ShapeType,
+  ImageType,
+  BorderType,
+  RGBAType,
+  CurrentStateType,
+  SelectedAreaType,
 }
