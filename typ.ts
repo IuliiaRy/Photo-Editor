@@ -66,6 +66,11 @@ type SelectedAreaType = {
   selection: ImageData;
 }
 
+type ComandHistoryType = {
+  undo: EditorType[];
+  redo: EditorType[];
+}
+
 export type {
   EditorType,
   CanvasType,
@@ -80,4 +85,5 @@ export type {
   RGBAType,
   CurrentStateType,
   SelectedAreaType,
+  ComandHistoryType,
 }
